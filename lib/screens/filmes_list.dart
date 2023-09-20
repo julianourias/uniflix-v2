@@ -18,7 +18,7 @@ class _FilmesListState extends State<FilmesList> {
   // Método para obter os filmes a partir da API.
   getFilmes() async {
     FilmeApi api = FilmeApi();
-    final filmes = await api.getFilmesOffline();
+    final filmes = await api.getFilmes();
     setState(() {
       filmesList = filmes;
     });
@@ -52,21 +52,21 @@ class _FilmesListState extends State<FilmesList> {
                 child: Column(
                   children: [
                     Image.network(
-                      'https://upload.wikimedia.org/wikipedia/pt/0/00/Iron_Man_poster.jpg', // Mostrando a capa do filme.
+                      filme.capa, // Mostrando a capa do filme.
                       height: 120,
                       width: double.infinity,
                       fit: BoxFit.cover,
                     ),
-                    const Text('Aqui vai o título',
+                    Text(filme.titulo,
                         style: TextStyle(
                             fontSize: 18)), // Mostrando o título do filme.
                     ListTile(
                       leading:
                           Text(filme.id.toString()), // Mostrando o ID do filme.
                       subtitle:
-                          const Text('Aqui vai o Resumo'), // Mostrando o resumo do filme.
-                      trailing: const Text(
-                          ' duração'), // Mostrando a duração do filme.
+                          Text(filme.titulo), // Mostrando o resumo do filme.
+                      trailing: Text(filme.duracao
+                          .toString()), // Mostrando a duração do filme.
                     ),
                   ],
                 ),
